@@ -21,8 +21,8 @@
 
 ### Players
 
-- Party can have two players
-- Party can have four players
+- Party can have at least two players
+- Party can have at most players
 
 ### Party
 
