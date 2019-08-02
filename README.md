@@ -35,3 +35,14 @@
 
 - Each player's turn he or shr draws one card from the deck and plays either that card or the card they already had
 - After processing the effect described on the discarded card the next player gets a turn
+
+## Howto
+
+- Create a new branch from master branch named `{yourname}`
+- Develop the game with Test Driven Development method
+
+## Links
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Love_Letter_(card_game))
+- [TDD](https://putaindecode.io/articles/se-lancer-dans-le-tdd/)
+- [xUnit](https://docs.microsoft.com/fr-fr/dotnet/core/testing/unit-testing-with-dotnet-test)
