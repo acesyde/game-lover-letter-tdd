@@ -15,11 +15,11 @@ namespace GameLoveLetter.Tests
 			var cardStrength = 1;
 
 			//A
-			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName);
-			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength);
+			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName));
+			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength));
 
-			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name");
-			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0);
+			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name"));
+			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0));
 
 			//A
 			Assert.Null(badCardNameException1);
@@ -41,11 +41,11 @@ namespace GameLoveLetter.Tests
 			var cardStrength = 2;
 
 			//A
-			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName);
-			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength);
+			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName));
+			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength));
 
-			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name");
-			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0);
+			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name"));
+			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0));
 
 			//A
 			Assert.Null(badCardNameException1);
@@ -67,11 +67,11 @@ namespace GameLoveLetter.Tests
 			var cardStrength = 3;
 
 			//A
-			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName);
-			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength);
+			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName));
+			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength));
 
-			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name");
-			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0);
+			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name"));
+			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0));
 
 			//A
 			Assert.Null(badCardNameException1);
@@ -93,11 +93,11 @@ namespace GameLoveLetter.Tests
 			var cardStrength = 4;
 
 			//A
-			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName);
-			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength);
+			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName));
+			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength));
 
-			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name");
-			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0);
+			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name"));
+			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0));
 
 			//A
 			Assert.Null(badCardNameException1);
@@ -119,11 +119,11 @@ namespace GameLoveLetter.Tests
 			var cardStrength = 5;
 
 			//A
-			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName);
-			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength);
+			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName));
+			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength));
 
-			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name");
-			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0);
+			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name"));
+			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0));
 
 			//A
 			Assert.Null(badCardNameException1);
@@ -145,11 +145,11 @@ namespace GameLoveLetter.Tests
 			var cardStrength = 6;
 
 			//A
-			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName);
-			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength);
+			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName));
+			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength));
 
-			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name");
-			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0);
+			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name"));
+			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0));
 
 			//A
 			Assert.Null(badCardNameException1);
@@ -171,11 +171,11 @@ namespace GameLoveLetter.Tests
 			var cardStrength = 7;
 
 			//A
-			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName);
-			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength);
+			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName));
+			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength));
 
-			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name");
-			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0);
+			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name"));
+			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0));
 
 			//A
 			Assert.Null(badCardNameException1);
@@ -197,11 +197,11 @@ namespace GameLoveLetter.Tests
 			var cardStrength = 8;
 
 			//A
-			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName);
-			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength);
+			var badCardNameException1 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, cardName));
+			var badStrengthNameException1 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, cardStrength));
 
-			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name");
-			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0);
+			var badCardNameException2 = Assert.Throws<BadCardNameException>(string.Equals(cardGuard.Name, "Bad name"));
+			var badStrengthNameException2 = Assert.Throws<BadStrengthNameException>(string.Equals(cardGuard.Strength, 0));
 
 			//A
 			Assert.Null(badCardNameException1);
