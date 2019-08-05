@@ -27,6 +27,7 @@ namespace GameLoveLetter.Tests
 			Assert.Equal(nbCardsExpected, nbCards);
 		}
 
+		#region Check strength of cards
 		[Fact]
 		public void CheckStrengthOfGuardCard()
 		{
@@ -138,7 +139,9 @@ namespace GameLoveLetter.Tests
 			// A
 			Assert.Equal(expectedCardStrength, cardStrength);
 		}
+		#endregion // Check strength of cards
 
+		#region Test guard card effect
 		[Fact]
 		public void GuardEffectReturnTrueIfCardMatchesTheTypeOfCardSpecified()
 		{
@@ -181,5 +184,6 @@ namespace GameLoveLetter.Tests
 			Assert.NotNull(exception);
 			Assert.Equal("The guard card effect can not accept a guard type.", exception.Message);
 		}
+		#endregion // Test guard card effect
 	}
 }
