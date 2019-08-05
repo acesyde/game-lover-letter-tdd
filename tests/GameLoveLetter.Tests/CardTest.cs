@@ -141,13 +141,30 @@ namespace GameLoveLetter.Tests
 		}
 		#endregion // Check strength of cards
 
-		#region Test guard card effect
+		#region Test card effect
 		[Fact]
-		public void GuardEffectReturnTrueIfCardMatchesTheTypeOfCardSpecified()
+		public void CardEffect_GuardCardEffectCannotAcceptTheGuardCardType()
 		{
 			// A
 			var guardCard = new GuardCard();
 			var priestCard = new PriestCard();
+			Type typeGuardCard = typeof(GuardCard);
+
+			// A
+			var exception = Assert.Throws<GuardCardCannotAcceptGuard>(() => guardCard.Effect(typeGuardCard, priestCard));
+
+			// A
+			Assert.NotNull(exception);
+			Assert.Equal("The guard card effect can not accept a guard type.", exception.Message);
+		}
+
+		[Fact]
+		public void CardEffect_GuardCardEffectReturnTrueIfCardMatchesTheTypeOfCardSpecified()
+		{
+			// A
+			var guardCard = new GuardCard();
+			var priestCard = new PriestCard();
+			Type typePriestCard = typeof(PriestCard);
 
 			// A
 			bool match = guardCard.Effect(typeof(PriestCard), priestCard);
@@ -157,33 +174,83 @@ namespace GameLoveLetter.Tests
 		}
 
 		[Fact]
-		public void GuardEffectReturnFalseIfCardDoesNotMatchTheTypeOfCardSpecified()
+		public void CardEffect_GuardCardEffectReturnFalseIfCardDoesNotMatchTheTypeOfCardSpecified()
 		{
 			// A
 			var guardCard = new GuardCard();
 			var priestCard = new PriestCard();
+			Type typeBaronCard = typeof(BaronCard);
 
 			// A
-			bool match = guardCard.Effect(typeof(BaronCard), priestCard);
+			bool match = guardCard.Effect(typeBaronCard, priestCard);
 
 			// A
 			Assert.False(match);
 		}
 
 		[Fact]
-		public void GuardEffectCannotAcceptTheGuardCardType()
+		public void CardEffect_PriestCardEffectReturnTheCardType()
 		{
 			// A
+			var priestCard = new PriestCard();
 			var guardCard = new GuardCard();
-			var priestCard = new GuardCard();
+			var typeExpected = typeof(GuardCard);
 
 			// A
-			var exception = Assert.Throws<GuardCardCannotAcceptGuard>(() => guardCard.Effect(typeof(GuardCard), priestCard));
+			Type type = priestCard.Effect(guardCard);
 
 			// A
-			Assert.NotNull(exception);
-			Assert.Equal("The guard card effect can not accept a guard type.", exception.Message);
+			Assert.Equal(typeExpected, type);
 		}
-		#endregion // Test guard card effect
+
+		[Fact]
+		public void CardEffect_BaronCardEffectReturnZeroIfCardsAreEquals()
+		{
+			// A
+			var baronCard = new BaronCard();
+			var card1 = new GuardCard();
+			var card2 = new GuardCard();
+			int expectedResult = 0;
+
+			// A
+			int result = baronCard.Effect(card1, card2);
+
+			// A
+			Assert.Equal(expectedResult, result);
+		}
+
+		[Fact]
+		public void CardEffect_BaronCardEffectReturnOneIfTheFirstCardIsStrongerThanTheSecondCard()
+		{
+			// A
+			var baronCard = new BaronCard();
+			var card1 = new PrinceCard();
+			var card2 = new GuardCard();
+			int expectedResult = 1;
+
+			// A
+			int result = baronCard.Effect(card1, card2);
+
+			// A
+			Assert.Equal(expectedResult, result);
+		}
+
+		[Fact]
+		public void CardEffect_BaronCardEffectReturnMinusOneIfTheFirstCardIsWeakerThanTheSecondCard()
+		{
+			// A
+			var baronCard = new BaronCard();
+			var card1 = new GuardCard();
+			var card2 = new PrinceCard();
+			int expectedResult = -1;
+
+			// A
+			int result = baronCard.Effect(card1, card2);
+
+			// A
+			Assert.Equal(expectedResult, result);
+		}
+		#endregion // Test card effect
+
 	}
 }
