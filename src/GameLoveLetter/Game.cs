@@ -18,14 +18,14 @@ namespace GameLoveLetter
 
 			Cards = new List<Card>()
 			{
-				new Guard(), new Guard(), new Guard(), new Guard(), new Guard(),
-				new Priest(), new Priest(),
-				new Baron(), new Baron(),
-				new Handmaid(), new Handmaid(),
-				new Prince(), new Prince(),
-				new King(),
-				new Countess(),
-				new Princess(),
+				new GuardCard(), new GuardCard(), new GuardCard(), new GuardCard(), new GuardCard(),
+				new PriestCard(), new PriestCard(),
+				new BaronCard(), new BaronCard(),
+				new HandmaidCard(), new HandmaidCard(),
+				new PrinceCard(), new PrinceCard(),
+				new KingCard(),
+				new CountessCard(),
+				new PrincessCard(),
 			};
 
 			Players = new List<Player>();

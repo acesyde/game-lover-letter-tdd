@@ -7,14 +7,14 @@ namespace GameLoveLetter.Tests
 	public class CardTest
 	{
 		[Theory]
-		[InlineData("Guard", 5)]
-		[InlineData("Priest", 2)]
-		[InlineData("Baron", 2)]
-		[InlineData("Handmaid", 2)]
-		[InlineData("Prince", 2)]
-		[InlineData("King", 1)]
-		[InlineData("Countess", 1)]
-		[InlineData("Princess", 1)]
+		[InlineData("GuardCard", 5)]
+		[InlineData("PriestCard", 2)]
+		[InlineData("BaronCard", 2)]
+		[InlineData("HandmaidCard", 2)]
+		[InlineData("PrinceCard", 2)]
+		[InlineData("KingCard", 1)]
+		[InlineData("CountessCard", 1)]
+		[InlineData("PrincessCard", 1)]
 		public void CheckNumberOfCardsbyType(string name, int nbCardsExpected)
 		{
 			// A
@@ -31,7 +31,7 @@ namespace GameLoveLetter.Tests
 		public void CheckStrengthOfGuardCard()
 		{
 			// A
-			var card = new Guard();
+			var card = new GuardCard();
 			int expectedCardStrength = 1;
 
 			// A
@@ -45,7 +45,7 @@ namespace GameLoveLetter.Tests
 		public void CheckStrengthOfPriestCard()
 		{
 			// A
-			var card = new Priest();
+			var card = new PriestCard();
 			int expectedCardStrength = 2;
 
 			// A
@@ -59,7 +59,7 @@ namespace GameLoveLetter.Tests
 		public void CheckStrengthOfBaronCard()
 		{
 			// A
-			var card = new Baron();
+			var card = new BaronCard();
 			int expectedCardStrength = 3;
 
 			// A
@@ -73,7 +73,7 @@ namespace GameLoveLetter.Tests
 		public void CheckStrengthOfHandmaidCard()
 		{
 			// A
-			var card = new Handmaid();
+			var card = new HandmaidCard();
 			int expectedCardStrength = 4;
 
 			// A
@@ -87,7 +87,7 @@ namespace GameLoveLetter.Tests
 		public void CheckStrengthOfPrinceCard()
 		{
 			// A
-			var card = new Prince();
+			var card = new PrinceCard();
 			int expectedCardStrength = 5;
 
 			// A
@@ -101,7 +101,7 @@ namespace GameLoveLetter.Tests
 		public void CheckStrengthOfKingCard()
 		{
 			// A
-			var card = new King();
+			var card = new KingCard();
 			int expectedCardStrength = 6;
 
 			// A
@@ -115,7 +115,7 @@ namespace GameLoveLetter.Tests
 		public void CheckStrengthOfCountessCard()
 		{
 			// A
-			var card = new Countess();
+			var card = new CountessCard();
 			int expectedCardStrength = 7;
 
 			// A
@@ -129,7 +129,7 @@ namespace GameLoveLetter.Tests
 		public void CheckStrengthOfPrincessCard()
 		{
 			// A
-			var card = new Princess();
+			var card = new PrincessCard();
 			int expectedCardStrength = 8;
 
 			// A
@@ -137,6 +137,49 @@ namespace GameLoveLetter.Tests
 
 			// A
 			Assert.Equal(expectedCardStrength, cardStrength);
+		}
+
+		[Fact]
+		public void GuardEffectReturnTrueIfCardMatchesTheTypeOfCardSpecified()
+		{
+			// A
+			var guardCard = new GuardCard();
+			var priestCard = new PriestCard();
+
+			// A
+			bool match = guardCard.Effect(typeof(PriestCard), priestCard);
+
+			// A
+			Assert.True(match);
+		}
+
+		[Fact]
+		public void GuardEffectReturnFalseIfCardDoesNotMatchTheTypeOfCardSpecified()
+		{
+			// A
+			var guardCard = new GuardCard();
+			var priestCard = new PriestCard();
+
+			// A
+			bool match = guardCard.Effect(typeof(BaronCard), priestCard);
+
+			// A
+			Assert.False(match);
+		}
+
+		[Fact]
+		public void GuardEffectCannotAcceptTheGuardCardType()
+		{
+			// A
+			var guardCard = new GuardCard();
+			var priestCard = new GuardCard();
+
+			// A
+			var exception = Assert.Throws<GuardCardCannotAcceptGuard>(() => guardCard.Effect(typeof(GuardCard), priestCard));
+
+			// A
+			Assert.NotNull(exception);
+			Assert.Equal("The guard card effect can not accept a guard type.", exception.Message);
 		}
 	}
 }

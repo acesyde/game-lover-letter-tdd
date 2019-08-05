@@ -1,8 +1,8 @@
 ﻿namespace GameLoveLetter
 {
-	public class Prince : Card
+	public class PrinceCard : Card
 	{
-		public Prince() 
+		public PrinceCard() 
 			: base(5)
 		{
 		}

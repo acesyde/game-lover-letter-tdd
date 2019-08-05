@@ -1,8 +1,8 @@
 ﻿namespace GameLoveLetter
 {
-	public class King : Card
+	public class KingCard : Card
 	{
-		public King() 
+		public KingCard() 
 			: base(6)
 		{
 		}

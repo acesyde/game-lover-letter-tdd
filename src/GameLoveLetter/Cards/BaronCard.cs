@@ -1,8 +1,8 @@
 ﻿namespace GameLoveLetter
 {
-	public class Baron : Card
+	public class BaronCard : Card
 	{
-		public Baron() 
+		public BaronCard() 
 			: base(3)
 		{
 		}
