@@ -6,8 +6,9 @@ namespace GameLoveLetter
 {
 	public class Game
 	{
-		public List<Player> Players { get; set; }
-		public List<Card> Cards { get; set; }
+		public List<Player> Players { get; private set; }
+
+		public CardDeck CardDesk { get; private set; }
 
 		public Game(int nbPlayer)
 		{
@@ -16,32 +17,22 @@ namespace GameLoveLetter
 				throw new BadNumberOfPlayersException();
 			}
 
-			Cards = new List<Card>()
-			{
-				new GuardCard(), new GuardCard(), new GuardCard(), new GuardCard(), new GuardCard(),
-				new PriestCard(), new PriestCard(),
-				new BaronCard(), new BaronCard(),
-				new HandmaidCard(), new HandmaidCard(),
-				new PrinceCard(), new PrinceCard(),
-				new KingCard(),
-				new CountessCard(),
-				new PrincessCard(),
-			};
+			CardDesk = new CardDeck();
 
 			Players = new List<Player>();
 			for (int i = 0; i < nbPlayer; i++)
 			{
-				Players.Add(new Player());
+				Players.Add(new Player(CardDesk.DrawACard));
 			}
 		}
 
 		public void Initialization()
 		{
-			Cards.RemoveAt(0);
+			CardDesk.DiscardCard();
 
 			foreach(var player in Players)
 			{
-				Cards.RemoveAt(0);
+				player.DrawACard();
 			}
 		}
 	}

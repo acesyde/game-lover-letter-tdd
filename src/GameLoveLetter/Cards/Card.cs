@@ -1,6 +1,6 @@
 ﻿namespace GameLoveLetter
 {
-	public class Card
+	public abstract class Card
 	{
 		public int Strength { get; private set; }
 

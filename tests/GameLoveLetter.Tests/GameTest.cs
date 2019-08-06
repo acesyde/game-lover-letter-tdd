@@ -4,6 +4,7 @@ namespace GameLoveLetter.Tests
 {
 	public class GameTest
 	{
+		#region Game Should Contain between 2 and 4 players
 		[Fact]
 		public void AGameShouldContainAtLeastTwoPlayer()
 		{
@@ -46,6 +47,7 @@ namespace GameLoveLetter.Tests
 			// A
 			Assert.Equal(nbPlayer, game.Players.Count);
 		}
+		#endregion // Game Should Contain between 2 and 4 players
 
 		[Fact] 
 		public void AtTheBeginningThereIsSixteenCardIntoTheDeck()
@@ -55,12 +57,13 @@ namespace GameLoveLetter.Tests
 			int nbCardsExpected = 16;
 
 			// A
-			int nbCards = game.Cards.Count;
+			int nbCards = game.CardDesk.Cards.Count;
 
 			// A
 			Assert.Equal(nbCardsExpected, nbCards);
 		}
 
+		#region Initialization of the game
 		[Theory]
 		[InlineData(2, 13)]
 		[InlineData(3, 12)]
@@ -72,10 +75,28 @@ namespace GameLoveLetter.Tests
 			
 			// A
 			game.Initialization();
-			int nbCards = game.Cards.Count;
+			int nbCards = game.CardDesk.Cards.Count;
 
 			// A
 			Assert.Equal(nbCardsRemainingExpected, nbCards);
 		}
+
+		[Fact]
+		public void AfterInitializationEachPlayerHasOneCard()
+		{
+			// A
+			var game = new Game(2);
+			Player playerOne = game.Players[0];
+			Player playerTwo = game.Players[1];
+			int nbCardExpected = 1;
+
+			// A
+			game.Initialization();
+
+			// A
+			Assert.Equal(nbCardExpected, playerOne.Cards.Count);
+			Assert.Equal(nbCardExpected, playerOne.Cards.Count);
+		}
+		#endregion // Initialization of the game
 	}
 }

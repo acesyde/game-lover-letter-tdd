@@ -21,7 +21,7 @@ namespace GameLoveLetter.Tests
 			var game = new Game(2);
 
 			// A
-			var nbCards = game.Cards.Count(c => c.GetType().Name == name);
+			var nbCards = game.CardDesk.Cards.Count(c => c.GetType().Name == name);
 			
 			// A
 			Assert.Equal(nbCardsExpected, nbCards);
@@ -250,7 +250,9 @@ namespace GameLoveLetter.Tests
 			// A
 			Assert.Equal(expectedResult, result);
 		}
+
 		#endregion // Test card effect
+
 
 	}
 }
