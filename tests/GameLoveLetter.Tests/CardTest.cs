@@ -6,6 +6,7 @@ namespace GameLoveLetter.Tests
 {
 	public class CardTest
 	{
+		#region Test number of cards and their strengths
 		[Theory]
 		[InlineData("GuardCard", 5)]
 		[InlineData("PriestCard", 2)]
@@ -27,119 +28,27 @@ namespace GameLoveLetter.Tests
 			Assert.Equal(nbCardsExpected, nbCards);
 		}
 
-		#region Check strength of cards
-		[Fact]
-		public void CheckStrengthOfGuardCard()
+		[Theory]
+		[InlineData(typeof(GuardCard), 1)]
+		[InlineData(typeof(PriestCard), 2)]
+		[InlineData(typeof(BaronCard), 3)]
+		[InlineData(typeof(HandmaidCard), 4)]
+		[InlineData(typeof(PrinceCard), 5)]
+		[InlineData(typeof(KingCard), 6)]
+		[InlineData(typeof(CountessCard), 7)]
+		[InlineData(typeof(PrincessCard), 8)]
+		public void CheckStrengthOfCards(Type type, int expectedStrength)
 		{
 			// A
-			var card = new GuardCard();
-			int expectedCardStrength = 1;
+			var card = (Card)Activator.CreateInstance(type);
 
 			// A
 			var cardStrength = card.Strength;
 
 			// A
-			Assert.Equal(expectedCardStrength, cardStrength);
+			Assert.Equal(expectedStrength, cardStrength);
 		}
-
-		[Fact]
-		public void CheckStrengthOfPriestCard()
-		{
-			// A
-			var card = new PriestCard();
-			int expectedCardStrength = 2;
-
-			// A
-			var cardStrength = card.Strength;
-
-			// A
-			Assert.Equal(expectedCardStrength, cardStrength);
-		}
-
-		[Fact]
-		public void CheckStrengthOfBaronCard()
-		{
-			// A
-			var card = new BaronCard();
-			int expectedCardStrength = 3;
-
-			// A
-			var cardStrength = card.Strength;
-
-			// A
-			Assert.Equal(expectedCardStrength, cardStrength);
-		}
-
-		[Fact]
-		public void CheckStrengthOfHandmaidCard()
-		{
-			// A
-			var card = new HandmaidCard();
-			int expectedCardStrength = 4;
-
-			// A
-			var cardStrength = card.Strength;
-
-			// A
-			Assert.Equal(expectedCardStrength, cardStrength);
-		}
-
-		[Fact]
-		public void CheckStrengthOfPrinceCard()
-		{
-			// A
-			var card = new PrinceCard();
-			int expectedCardStrength = 5;
-
-			// A
-			var cardStrength = card.Strength;
-
-			// A
-			Assert.Equal(expectedCardStrength, cardStrength);
-		}
-
-		[Fact]
-		public void CheckStrengthOfKingCard()
-		{
-			// A
-			var card = new KingCard();
-			int expectedCardStrength = 6;
-
-			// A
-			var cardStrength = card.Strength;
-
-			// A
-			Assert.Equal(expectedCardStrength, cardStrength);
-		}
-
-		[Fact]
-		public void CheckStrengthOfCountessCard()
-		{
-			// A
-			var card = new CountessCard();
-			int expectedCardStrength = 7;
-
-			// A
-			var cardStrength = card.Strength;
-
-			// A
-			Assert.Equal(expectedCardStrength, cardStrength);
-		}
-
-		[Fact]
-		public void CheckStrengthOfPrincessCard()
-		{
-			// A
-			var card = new PrincessCard();
-			int expectedCardStrength = 8;
-
-			// A
-			var cardStrength = card.Strength;
-
-			// A
-			Assert.Equal(expectedCardStrength, cardStrength);
-		}
-		#endregion // Check strength of cards
+		#endregion // Test number of cards and their strengths
 
 		#region Test card effect
 		[Fact]
@@ -167,7 +76,7 @@ namespace GameLoveLetter.Tests
 			Type typePriestCard = typeof(PriestCard);
 
 			// A
-			bool match = guardCard.Effect(typeof(PriestCard), priestCard);
+			bool match = guardCard.Effect(typePriestCard, priestCard);
 
 			// A
 			Assert.True(match);
@@ -250,9 +159,6 @@ namespace GameLoveLetter.Tests
 			// A
 			Assert.Equal(expectedResult, result);
 		}
-
 		#endregion // Test card effect
-
-
 	}
 }

@@ -49,7 +49,8 @@ namespace GameLoveLetter.Tests
 		}
 		#endregion // Game Should Contain between 2 and 4 players
 
-		[Fact] 
+		#region Initialization of the game
+		[Fact]
 		public void AtTheBeginningThereIsSixteenCardIntoTheDeck()
 		{
 			// A
@@ -63,7 +64,6 @@ namespace GameLoveLetter.Tests
 			Assert.Equal(nbCardsExpected, nbCards);
 		}
 
-		#region Initialization of the game
 		[Theory]
 		[InlineData(2, 13)]
 		[InlineData(3, 12)]
