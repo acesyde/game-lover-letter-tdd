@@ -1,12 +1,11 @@
-﻿using System;
+﻿using GameLoveLetter.Cards;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GameLoveLetter
 {
 	public class CardDeck
 	{
-		public Queue<Card> Cards { get; private set; }
+		public Queue<ICard> Cards { get; private set; }
 		
 		public CardDeck()
 		{
@@ -16,7 +15,7 @@ namespace GameLoveLetter
 
 		private void Create()
 		{
-			Cards = new Queue<Card>();
+			Cards = new Queue<ICard>();
 			Cards.Enqueue(new GuardCard());
 			Cards.Enqueue(new GuardCard());
 			Cards.Enqueue(new GuardCard());
@@ -45,7 +44,7 @@ namespace GameLoveLetter
 			Cards.Dequeue();
 		}
 
-		public Card DrawACard()
+		public ICard DrawACard()
 		{
 			return Cards.Dequeue();
 		}

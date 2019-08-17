@@ -1,13 +1,13 @@
 ﻿namespace GameLoveLetter.Cards
 {
-	public abstract class Card<CardData> where CardData : class
+	public interface ICard
 	{
-		public int Strength { get; set; }
-		public CardData Data { get; set; }
+		int Strength { get; set; }
+		void Effect();
+	}
 
-		public Card(int strength)
-		{
-			Strength = strength;
-		}
+	public interface ICard<CardData> : ICard
+	{
+		CardData Data { get; set; }
 	}
 }

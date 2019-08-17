@@ -1,9 +1,18 @@
 ﻿namespace GameLoveLetter.Cards
 {
-	public class PrincessCard : Card<PrincessCardData>
+	public class PrincessCard : ICard<PrincessCardData>
 	{
-		public PrincessCard() 
-			: base(8)
-		{}
+		public PrincessCardData Data { get; set; }
+		public int Strength { get; set; }
+
+		public PrincessCard()
+		{
+			Strength = 8;
+		}
+
+		public void Effect()
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

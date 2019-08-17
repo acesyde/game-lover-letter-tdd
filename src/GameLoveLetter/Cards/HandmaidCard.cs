@@ -1,9 +1,18 @@
 ﻿namespace GameLoveLetter.Cards
 {
-	public class HandmaidCard : Card<HandmaidCardData>
+	public class HandmaidCard : ICard<HandmaidCardData>
 	{
-		public HandmaidCard() 
-			: base(4)
-		{}
+		public HandmaidCardData Data { get; set; }
+		public int Strength { get; set; }
+
+		public HandmaidCard()
+		{
+			Strength = 4;
+		}
+
+		public void Effect()
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

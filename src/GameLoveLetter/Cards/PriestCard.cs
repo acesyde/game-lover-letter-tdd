@@ -1,9 +1,18 @@
 ﻿namespace GameLoveLetter.Cards
 {
-	public class PriestCard : Card<PriestCardData>
+	public class PriestCard : ICard<PriestCardData>
 	{
-		public PriestCard() 
-			: base(2)
-		{}
+		public PriestCardData Data { get; set; }
+		public int Strength { get; set; }
+
+		public PriestCard()
+		{
+			Strength = 2;
+		}
+
+		public void Effect()
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

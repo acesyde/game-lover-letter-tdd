@@ -1,19 +1,20 @@
-﻿using System;
+﻿using GameLoveLetter.Cards;
+using System;
 using System.Collections.Generic;
 
 namespace GameLoveLetter
 {
 	public class Player
 	{
-		public List<Card> Cards { get; set; } 
+		public List<ICard> Cards { get; set; } 
 
-		public delegate Card DrawACardDelegate();
+		public delegate ICard DrawACardDelegate();
 		private DrawACardDelegate _drawACardDelegate;
 
 		public Player(DrawACardDelegate drawACardDelegate)
 		{
 			_drawACardDelegate = drawACardDelegate;
-			Cards = new List<Card>();
+			Cards = new List<ICard>();
 		}
 
 		public void DrawACard()
@@ -21,42 +22,22 @@ namespace GameLoveLetter
 			Cards.Add(_drawACardDelegate());
 		}
 
-		public Card PlayCard()
+		public ICard PlayCard()
 		{
 			if (Cards.Count <= 0)
 			{
 				throw new Exception("Player hasn't card in his hand.");
 			}
 
-			Card chosenCard = ChooseCard();
+			ICard chosenCard = ChooseCard();
 			Cards.Remove(chosenCard);
-			FillData(chosenCard);
 
 			return chosenCard;
 		}
 
-		private void FillData(Card chosenCard)
-		{
-			if (chosenCard.GetType() == typeof(GuardCard))
-			{
-				chosenCard.Datas = PlayGuardCard();
-			}
-			else
-			{
-				chosenCard.Datas = PlayPriestCard();
-			}
-		}
-
-		private Card ChooseCard()
+		private ICard ChooseCard()
 		{
 			return Cards[0];
 		}
-
-		public Card.Data PlayGuardCard()
-		{
-			return new GuardCard.Data(new Player(null), typeof(GuardCard));
-		}
-
-		public  Pri
 	}
 }

@@ -40,15 +40,5 @@ namespace GameLoveLetter.Tests
 			// A
 			Assert.Empty(player.Cards);
 		}
-
-		[Fact]
-		public void PlayAHandmaidCardProctectsThePlayer()
-		{
-			Player player = new Player(null);
-			player.Cards = new List<Card>() { new GuardCard() };
-
-			player.PlayCard();
-
-		}
 	}
 }

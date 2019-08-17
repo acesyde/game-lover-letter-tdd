@@ -1,9 +1,18 @@
 ﻿namespace GameLoveLetter.Cards
 {
-	public class GuardCard : Card<GuardCardData>
+	public class GuardCard : ICard<GuardCardData>
 	{
-		public GuardCard() 
-			: base(1)
-		{}
+		public GuardCardData Data { get; set; }
+		public int Strength { get; set; }
+
+		public GuardCard()
+		{
+			Strength = 1;
+		}
+
+		public void Effect()
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }

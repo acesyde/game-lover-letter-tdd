@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameLoveLetter.Cards;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -7,41 +8,13 @@ namespace GameLoveLetter.Tests
 {
 	public class CardTest
 	{
-		#region Test number of cards and their strengths
-		[Theory]
-		[InlineData("GuardCard", 5)]
-		[InlineData("PriestCard", 2)]
-		[InlineData("BaronCard", 2)]
-		[InlineData("HandmaidCard", 2)]
-		[InlineData("PrinceCard", 2)]
-		[InlineData("KingCard", 1)]
-		[InlineData("CountessCard", 1)]
-		[InlineData("PrincessCard", 1)]
-		public void CheckNumberOfCardsbyType(string name, int nbCardsExpected)
+		#region Test cards strength
+		[Fact]
+		public void CardStrenght_GuardCard_StrengthOfOne()
 		{
 			// A
-			var game = new Game(2);
-
-			// A
-			var nbCards = game.CardDesk.Cards.Count(c => c.GetType().Name == name);
-			
-			// A
-			Assert.Equal(nbCardsExpected, nbCards);
-		}
-
-		[Theory]
-		[InlineData(typeof(GuardCard), 1)]
-		[InlineData(typeof(PriestCard), 2)]
-		[InlineData(typeof(BaronCard), 3)]
-		[InlineData(typeof(HandmaidCard), 4)]
-		[InlineData(typeof(PrinceCard), 5)]
-		[InlineData(typeof(KingCard), 6)]
-		[InlineData(typeof(CountessCard), 7)]
-		[InlineData(typeof(PrincessCard), 8)]
-		public void CheckStrengthOfCards(Type type, int expectedStrength)
-		{
-			// A
-			var card = (Card)Activator.CreateInstance(type);
+			var card = new GuardCard();
+			int expectedStrength = 1;
 
 			// A
 			var cardStrength = card.Strength;
@@ -49,139 +22,105 @@ namespace GameLoveLetter.Tests
 			// A
 			Assert.Equal(expectedStrength, cardStrength);
 		}
-		#endregion // Test number of cards and their strengths
 
-		#region Test card effect
 		[Fact]
-		public void CardEffect_GuardCardEffectCannotAcceptTheGuardCardType()
+		public void CardStrenght_PriestCard_StrengthOfTwo()
 		{
 			// A
-			var guardCard = new GuardCard();
-			var priestCard = new PriestCard();
-			Type typeGuardCard = typeof(GuardCard);
+			var card = new PriestCard();
+			int expectedStrength = 2;
 
 			// A
-			var exception = Assert.Throws<GuardCardCannotAcceptGuardException>(() => guardCard.Effect(typeGuardCard, priestCard));
+			var cardStrength = card.Strength;
 
 			// A
-			Assert.NotNull(exception);
-			Assert.Equal("The guard card effect can not accept a guard type.", exception.Message);
+			Assert.Equal(expectedStrength, cardStrength);
 		}
 
 		[Fact]
-		public void CardEffect_GuardCardEffectReturnTrueIfCardMatchesTheTypeOfCardSpecified()
+		public void CardStrenght_BaronCard_StrengthOfThree()
 		{
 			// A
-			var guardCard = new GuardCard();
-			var priestCard = new PriestCard();
-			Type typePriestCard = typeof(PriestCard);
+			var card = new BaronCard();
+			int expectedStrength = 3;
 
 			// A
-			bool match = guardCard.Effect(typePriestCard, priestCard);
+			var cardStrength = card.Strength;
 
 			// A
-			Assert.True(match);
+			Assert.Equal(expectedStrength, cardStrength);
 		}
 
 		[Fact]
-		public void CardEffect_GuardCardEffectReturnFalseIfCardDoesNotMatchTheTypeOfCardSpecified()
+		public void CardStrenght_HandmaidCard_StrengthOfFour()
 		{
 			// A
-			var guardCard = new GuardCard();
-			var priestCard = new PriestCard();
-			Type typeBaronCard = typeof(BaronCard);
+			var card = new HandmaidCard();
+			int expectedStrength = 4;
 
 			// A
-			bool match = guardCard.Effect(typeBaronCard, priestCard);
+			var cardStrength = card.Strength;
 
 			// A
-			Assert.False(match);
+			Assert.Equal(expectedStrength, cardStrength);
 		}
 
 		[Fact]
-		public void CardEffect_PriestCardEffectReturnTheCardType()
+		public void CardStrenght_PrinceCard_StrengthOfFive()
 		{
 			// A
-			var priestCard = new PriestCard();
-			var guardCard = new GuardCard();
-			var typeExpected = typeof(GuardCard);
+			var card = new PrinceCard();
+			int expectedStrength = 5;
 
 			// A
-			Type type = priestCard.Effect(guardCard);
+			var cardStrength = card.Strength;
 
 			// A
-			Assert.Equal(typeExpected, type);
+			Assert.Equal(expectedStrength, cardStrength);
 		}
 
 		[Fact]
-		public void CardEffect_BaronCardEffectReturnZeroIfCardsAreEquals()
+		public void CardStrenght_KingCard_StrengthOfSix()
 		{
 			// A
-			var baronCard = new BaronCard();
-			var card1 = new GuardCard();
-			var card2 = new GuardCard();
-			int expectedResult = 0;
+			var card = new KingCard();
+			int expectedStrength = 6;
 
 			// A
-			int result = baronCard.Effect(card1, card2);
+			var cardStrength = card.Strength;
 
 			// A
-			Assert.Equal(expectedResult, result);
+			Assert.Equal(expectedStrength, cardStrength);
 		}
 
 		[Fact]
-		public void CardEffect_BaronCardEffectReturnOneIfTheFirstCardIsStrongerThanTheSecondCard()
+		public void CardStrenght_CountessCard_StrengthOfSeven()
 		{
 			// A
-			var baronCard = new BaronCard();
-			var card1 = new PrinceCard();
-			var card2 = new GuardCard();
-			int expectedResult = 1;
+			var card = new CountessCard();
+			int expectedStrength = 7;
 
 			// A
-			int result = baronCard.Effect(card1, card2);
+			var cardStrength = card.Strength;
 
 			// A
-			Assert.Equal(expectedResult, result);
+			Assert.Equal(expectedStrength, cardStrength);
 		}
 
 		[Fact]
-		public void CardEffect_BaronCardEffectReturnMinusOneIfTheFirstCardIsWeakerThanTheSecondCard()
+		public void CardStrenght_PrincessCard_StrengthOfHeight()
 		{
 			// A
-			var baronCard = new BaronCard();
-			var card1 = new GuardCard();
-			var card2 = new PrinceCard();
-			int expectedResult = -1;
+			var card = new PrincessCard();
+			int expectedStrength = 8;
 
 			// A
-			int result = baronCard.Effect(card1, card2);
+			var cardStrength = card.Strength;
 
 			// A
-			Assert.Equal(expectedResult, result);
+			Assert.Equal(expectedStrength, cardStrength);
 		}
-		#endregion // Test card effect
 
-		[Theory]
-		[InlineData(typeof(GuardCard), typeof(GuardCard.Data))]
-		[InlineData(typeof(PriestCard), typeof(PriestCard.Data))]
-		[InlineData(typeof(BaronCard), typeof(BaronCard.Data))]
-		[InlineData(typeof(HandmaidCard), typeof(HandmaidCard.Data))]
-		[InlineData(typeof(PrinceCard), typeof(PrinceCard.Data))]
-		[InlineData(typeof(KingCard), typeof(KingCard.Data))]
-		[InlineData(typeof(CountessCard), typeof(CountessCard.Data))]
-		[InlineData(typeof(PrincessCard), typeof(PrincessCard.Data))]
-		public void PlayCardReturnCardDataAssociated(Type cardType, Type cardDataTypeExpected)
-		{
-			// A
-			Player player = new Player(null);
-			player.Cards = new List<Card>() { (Card)Activator.CreateInstance(cardType) };
-
-			// A
-			var cardData = player.PlayCard();
-
-			// A
-			Assert.Equal(cardDataTypeExpected, cardData.GetType());
-		}
+		#endregion // Test cards strength
 	}
 }

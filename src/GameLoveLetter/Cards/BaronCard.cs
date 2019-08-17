@@ -1,9 +1,18 @@
 ﻿namespace GameLoveLetter.Cards
 {
-	public class BaronCard : Card<BaronCardData>
+	public class BaronCard : ICard<BaronCardData>
 	{
-		public BaronCard() 
-			: base(3)
-		{}
+		public int Strength { get; set; }
+		public BaronCardData Data { get; set; }
+
+		public BaronCard()
+		{
+			Strength = 3;
+		}
+
+		public void Effect()
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 }
