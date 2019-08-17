@@ -1,17 +1,9 @@
-﻿using System;
-
-namespace GameLoveLetter
+﻿namespace GameLoveLetter.Cards
 {
-	public class PriestCard : Card
+	public class PriestCard : Card<PriestCardData>
 	{
 		public PriestCard() 
 			: base(2)
-		{
-		}
-
-		public Type Effect(Card card)
-		{
-			return card.GetType();
-		}
+		{}
 	}
 }

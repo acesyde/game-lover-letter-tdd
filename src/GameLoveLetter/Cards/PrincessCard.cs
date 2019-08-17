@@ -1,10 +1,9 @@
-﻿namespace GameLoveLetter
+﻿namespace GameLoveLetter.Cards
 {
-	public class PrincessCard : Card
+	public class PrincessCard : Card<PrincessCardData>
 	{
 		public PrincessCard() 
 			: base(8)
-		{
-		}
+		{}
 	}
 }

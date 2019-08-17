@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System.Collections.Generic;
+using Xunit;
 
 namespace GameLoveLetter.Tests
 {
@@ -9,7 +10,7 @@ namespace GameLoveLetter.Tests
 		[InlineData(1)]
 		[InlineData(2)]
 		[InlineData(3)]
-		public void WhenAPlayDrawCardsHeGetsAdditionalCardInHisHand(int nbDraws)
+		public void WhenAPlayerDrawCardsHeGetsAdditionalCardInHisHand(int nbDraws)
 		{
 			// A
 			CardDeck cardDeck = new CardDeck();
@@ -23,6 +24,31 @@ namespace GameLoveLetter.Tests
 
 			// A
 			Assert.Equal(nbDraws, player.Cards.Count);
+		}
+
+		[Fact]
+		public void WhenAPlayerPlayACardHeLosesACardFromHisHand()
+		{
+			// A
+			CardDeck cardDeck = new CardDeck();
+			Player player = new Player(cardDeck.DrawACard);
+			player.DrawACard();
+
+			// A
+			player.PlayCard();
+
+			// A
+			Assert.Empty(player.Cards);
+		}
+
+		[Fact]
+		public void PlayAHandmaidCardProctectsThePlayer()
+		{
+			Player player = new Player(null);
+			player.Cards = new List<Card>() { new GuardCard() };
+
+			player.PlayCard();
+
 		}
 	}
 }

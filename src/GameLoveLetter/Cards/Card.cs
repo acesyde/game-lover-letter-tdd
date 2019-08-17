@@ -1,12 +1,13 @@
-﻿namespace GameLoveLetter
+﻿namespace GameLoveLetter.Cards
 {
-	public abstract class Card
+	public abstract class Card<CardData> where CardData : class
 	{
-		public int Strength { get; private set; }
+		public int Strength { get; set; }
+		public CardData Data { get; set; }
 
 		public Card(int strength)
 		{
-			this.Strength = strength;
+			Strength = strength;
 		}
 	}
 }

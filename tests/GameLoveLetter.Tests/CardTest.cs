@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -60,7 +61,7 @@ namespace GameLoveLetter.Tests
 			Type typeGuardCard = typeof(GuardCard);
 
 			// A
-			var exception = Assert.Throws<GuardCardCannotAcceptGuard>(() => guardCard.Effect(typeGuardCard, priestCard));
+			var exception = Assert.Throws<GuardCardCannotAcceptGuardException>(() => guardCard.Effect(typeGuardCard, priestCard));
 
 			// A
 			Assert.NotNull(exception);
@@ -160,5 +161,27 @@ namespace GameLoveLetter.Tests
 			Assert.Equal(expectedResult, result);
 		}
 		#endregion // Test card effect
+
+		[Theory]
+		[InlineData(typeof(GuardCard), typeof(GuardCard.Data))]
+		[InlineData(typeof(PriestCard), typeof(PriestCard.Data))]
+		[InlineData(typeof(BaronCard), typeof(BaronCard.Data))]
+		[InlineData(typeof(HandmaidCard), typeof(HandmaidCard.Data))]
+		[InlineData(typeof(PrinceCard), typeof(PrinceCard.Data))]
+		[InlineData(typeof(KingCard), typeof(KingCard.Data))]
+		[InlineData(typeof(CountessCard), typeof(CountessCard.Data))]
+		[InlineData(typeof(PrincessCard), typeof(PrincessCard.Data))]
+		public void PlayCardReturnCardDataAssociated(Type cardType, Type cardDataTypeExpected)
+		{
+			// A
+			Player player = new Player(null);
+			player.Cards = new List<Card>() { (Card)Activator.CreateInstance(cardType) };
+
+			// A
+			var cardData = player.PlayCard();
+
+			// A
+			Assert.Equal(cardDataTypeExpected, cardData.GetType());
+		}
 	}
 }

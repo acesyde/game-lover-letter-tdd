@@ -3,10 +3,10 @@ using System.Runtime.Serialization;
 
 namespace GameLoveLetter
 {
-	public class GuardCardCannotAcceptGuard : Exception
+	public class GuardCardCannotAcceptGuardException : Exception
 	{
 
-		public GuardCardCannotAcceptGuard() 
+		public GuardCardCannotAcceptGuardException() 
 			: base("The guard card effect can not accept a guard type.")
 		{
 		}

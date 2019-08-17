@@ -1,22 +1,9 @@
-﻿using System;
-
-namespace GameLoveLetter
+﻿namespace GameLoveLetter.Cards
 {
-	public class GuardCard : Card
+	public class GuardCard : Card<GuardCardData>
 	{
 		public GuardCard() 
 			: base(1)
-		{
-		}
-
-		public bool Effect(Type type, Card card)
-		{
-			if (type == typeof(GuardCard))
-			{
-				throw new GuardCardCannotAcceptGuard();
-			}
-
-			return (type == card.GetType());
-		}
+		{}
 	}
 }
