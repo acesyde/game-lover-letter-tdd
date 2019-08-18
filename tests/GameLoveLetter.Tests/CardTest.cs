@@ -317,7 +317,7 @@ namespace GameLoveLetter.Tests
 			currentPlayer.PlayCard(currentPlayerCard);
 
 			// A
-			Assert.Equal(13, cardDeck.Cards.Count);
+			Assert.Equal(13, cardDeck.Count);
 		}
 
 		[Fact]
@@ -371,7 +371,6 @@ namespace GameLoveLetter.Tests
 		{
 			// A
 			Player currentPlayer = new Player();
-			CardDeck cardDeck = new CardDeck();
 			CountessCard currentPlayerCard = new CountessCard();
 
 			currentPlayer.DrawACard(currentPlayerCard);
@@ -389,7 +388,6 @@ namespace GameLoveLetter.Tests
 		{
 			// A
 			Player currentPlayer = new Player();
-			CardDeck cardDeck = new CardDeck();
 			CountessCard currentPlayerCard = new CountessCard();
 
 			currentPlayer.DrawACard(currentPlayerCard);
