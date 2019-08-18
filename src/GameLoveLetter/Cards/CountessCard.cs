@@ -2,8 +2,8 @@
 {
 	public class CountessCard : ICard<CountessCardData>
 	{
-		public CountessCardData Data { get; set; }
 		public int Strength { get; set; }
+		public CountessCardData Data { get; set; }
 
 		public CountessCard() 
 		{

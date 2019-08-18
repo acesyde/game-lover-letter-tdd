@@ -1,9 +1,11 @@
-﻿namespace GameLoveLetter.Cards
+﻿using System;
+
+namespace GameLoveLetter.Cards
 {
 	public class GuardCard : ICard<GuardCardData>
 	{
-		public GuardCardData Data { get; set; }
 		public int Strength { get; set; }
+		public GuardCardData Data { get; set; }
 
 		public GuardCard()
 		{
@@ -12,7 +14,13 @@
 
 		public void Effect()
 		{
-			throw new System.NotImplementedException();
+			if (Data.CardType == typeof(GuardCard))
+			{
+				throw new GuardCardCannotAcceptGuardCardException();
+			}
+
+			bool playerHasDesignedCard = Data.DesignatedPlayer.HasCard(Data.CardType);
+			Data.CurrentPlayer.UpdateCardInformationAboutPlayer(Data.DesignatedPlayer, Data.CardType, playerHasDesignedCard);
 		}
 	}
 }

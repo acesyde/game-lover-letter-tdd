@@ -2,8 +2,8 @@
 {
 	public class KingCard : ICard<KingCardData>
 	{
-		public KingCardData Data { get; set; }
 		public int Strength { get; set; }
+		public KingCardData Data { get; set; }
 
 		public KingCard()
 		{

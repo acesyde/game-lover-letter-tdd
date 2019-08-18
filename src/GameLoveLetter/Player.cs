@@ -7,19 +7,46 @@ namespace GameLoveLetter
 	public class Player
 	{
 		public List<ICard> Cards { get; set; } 
+		public Dictionary<Player, Type> CardInformations { get; set; }
 
-		public delegate ICard DrawACardDelegate();
-		private DrawACardDelegate _drawACardDelegate;
-
-		public Player(DrawACardDelegate drawACardDelegate)
+		public Player()
 		{
-			_drawACardDelegate = drawACardDelegate;
 			Cards = new List<ICard>();
 		}
 
-		public void DrawACard()
+		public void Initialization(List<Player> players)
 		{
-			Cards.Add(_drawACardDelegate());
+			CardInformations = new Dictionary<Player, Type>();
+
+			foreach (var player in players)
+			{
+				CardInformations.Add(player, null);
+			}
+		}
+
+		public void DrawACard(ICard cardDrawn)
+		{
+			Cards.Add(cardDrawn);
+		}
+
+		public void UpdateCardInformationAboutPlayer(Player designatedPlayer, Type cardType, bool playerHasDesignedCard)
+		{
+			if (!CardInformations.ContainsKey(designatedPlayer))
+			{
+				throw new UnknownPlayerException();
+			}
+
+			CardInformations[designatedPlayer] = playerHasDesignedCard ? cardType : null;
+		}
+
+		public bool HasCard(Type cardType)
+		{
+			if (Cards.Count <= 0)
+			{
+				throw new Exception("Player hasn't card in his hand.");
+			}
+
+			return Cards[0].GetType() == cardType;
 		}
 
 		public ICard PlayCard()
@@ -38,6 +65,11 @@ namespace GameLoveLetter
 		private ICard ChooseCard()
 		{
 			return Cards[0];
+		}
+
+		public Type GetCardInformation(Player designatedPlayer)
+		{
+			return CardInformations[designatedPlayer];
 		}
 	}
 }

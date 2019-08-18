@@ -8,9 +8,9 @@ namespace GameLoveLetter.Tests
 {
 	public class CardTest
 	{
-		#region Test cards strength
+		#region Cards strength
 		[Fact]
-		public void CardStrenght_GuardCard_StrengthOfOne()
+		public void CardStrength_GuardCard_StrengthOfOne()
 		{
 			// A
 			var card = new GuardCard();
@@ -24,7 +24,7 @@ namespace GameLoveLetter.Tests
 		}
 
 		[Fact]
-		public void CardStrenght_PriestCard_StrengthOfTwo()
+		public void CardStrength_PriestCard_StrengthOfTwo()
 		{
 			// A
 			var card = new PriestCard();
@@ -38,7 +38,7 @@ namespace GameLoveLetter.Tests
 		}
 
 		[Fact]
-		public void CardStrenght_BaronCard_StrengthOfThree()
+		public void CardStrength_BaronCard_StrengthOfThree()
 		{
 			// A
 			var card = new BaronCard();
@@ -52,7 +52,7 @@ namespace GameLoveLetter.Tests
 		}
 
 		[Fact]
-		public void CardStrenght_HandmaidCard_StrengthOfFour()
+		public void CardStrength_HandmaidCard_StrengthOfFour()
 		{
 			// A
 			var card = new HandmaidCard();
@@ -66,7 +66,7 @@ namespace GameLoveLetter.Tests
 		}
 
 		[Fact]
-		public void CardStrenght_PrinceCard_StrengthOfFive()
+		public void CardStrength_PrinceCard_StrengthOfFive()
 		{
 			// A
 			var card = new PrinceCard();
@@ -80,7 +80,7 @@ namespace GameLoveLetter.Tests
 		}
 
 		[Fact]
-		public void CardStrenght_KingCard_StrengthOfSix()
+		public void CardStrength_KingCard_StrengthOfSix()
 		{
 			// A
 			var card = new KingCard();
@@ -94,7 +94,7 @@ namespace GameLoveLetter.Tests
 		}
 
 		[Fact]
-		public void CardStrenght_CountessCard_StrengthOfSeven()
+		public void CardStrength_CountessCard_StrengthOfSeven()
 		{
 			// A
 			var card = new CountessCard();
@@ -108,7 +108,7 @@ namespace GameLoveLetter.Tests
 		}
 
 		[Fact]
-		public void CardStrenght_PrincessCard_StrengthOfHeight()
+		public void CardStrength_PrincessCard_StrengthOfHeight()
 		{
 			// A
 			var card = new PrincessCard();
@@ -121,6 +121,74 @@ namespace GameLoveLetter.Tests
 			Assert.Equal(expectedStrength, cardStrength);
 		}
 
-		#endregion // Test cards strength
+		#endregion // Cards strength
+
+		#region Cards effect
+		[Fact]
+		public void GuardCardEffect_NameGuardCard_ThrowException()
+		{
+			// A
+			Player currentPlayer = new Player();
+			Player designatedPlayer = new Player();
+			GuardCard currentPlayerCard = new GuardCard();
+			GuardCard designatedPlayerCard = new GuardCard();
+			currentPlayer.DrawACard(currentPlayerCard);
+
+			// A
+			designatedPlayer.DrawACard(designatedPlayerCard);
+			currentPlayerCard.Data = new GuardCardData(currentPlayer, designatedPlayer, designatedPlayerCard.GetType());
+			var exception = Assert.Throws<GuardCardCannotAcceptGuardCardException>(() => currentPlayerCard.Effect());
+
+			// A
+			Assert.NotNull(exception);
+			Assert.Equal("The guard card effect can not accept a guard type.", exception.Message);
+		}
+
+		[Fact]
+		public void GuardCardEffect_NameRightCard_GetsCardPlayerInformation()
+		{
+			// A
+			Player currentPlayer = new Player();
+			Player designatedPlayer = new Player();
+			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
+			GuardCard currentPlayerCard = new GuardCard();
+			PriestCard designatedPlayerCard = new PriestCard();
+
+			currentPlayer.Initialization(players);
+			designatedPlayer.Initialization(players);
+
+			// A
+			currentPlayer.DrawACard(currentPlayerCard);
+			designatedPlayer.DrawACard(designatedPlayerCard);
+			currentPlayerCard.Data = new GuardCardData(currentPlayer, designatedPlayer, designatedPlayerCard.GetType());
+			currentPlayerCard.Effect();
+
+			// A
+			Assert.Equal(designatedPlayerCard.GetType(), currentPlayer.GetCardInformation(designatedPlayer));
+		}
+
+		[Fact]
+		public void GuardCardEffect_NameWrongCard_GetsNoCardPlayerInformation()
+		{
+			// A
+			Player currentPlayer = new Player();
+			Player designatedPlayer = new Player();
+			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
+			GuardCard currentPlayerCard = new GuardCard();
+			PriestCard designatedPlayerCard = new PriestCard();
+
+			currentPlayer.Initialization(players);
+			designatedPlayer.Initialization(players);
+
+			// A
+			currentPlayer.DrawACard(currentPlayerCard);
+			designatedPlayer.DrawACard(designatedPlayerCard);
+			currentPlayerCard.Data = new GuardCardData(currentPlayer, designatedPlayer, designatedPlayerCard.GetType());
+			currentPlayerCard.Effect();
+
+			// A
+			Assert.NotEqual(typeof(PrincessCard), currentPlayer.GetCardInformation(designatedPlayer));
+		}
+		#endregion // Cards effect
 	}
 }

@@ -119,7 +119,7 @@ namespace GameLoveLetter.Tests
 
 			// A
 			Assert.Equal(nbCardExpected, playerOne.Cards.Count);
-			Assert.Equal(nbCardExpected, playerOne.Cards.Count);
+			Assert.Equal(nbCardExpected, playerTwo.Cards.Count);
 		}
 		#endregion // Initialization of the game
 	}

@@ -22,7 +22,7 @@ namespace GameLoveLetter
 			Players = new List<Player>();
 			for (int i = 0; i < nbPlayer; i++)
 			{
-				Players.Add(new Player(CardDesk.DrawACard));
+				Players.Add(new Player());
 			}
 		}
 
@@ -32,7 +32,7 @@ namespace GameLoveLetter
 
 			foreach(var player in Players)
 			{
-				player.DrawACard();
+				player.DrawACard(CardDesk.DrawACard());
 			}
 		}
 	}
