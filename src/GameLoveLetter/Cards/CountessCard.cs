@@ -2,13 +2,11 @@
 {
 	public class CountessCard : ICard<CountessCardData>
 	{
-		public int Strength { get; set; }
+		public int Strength { get; set; } = 7;
 		public CountessCardData Data { get; set; }
 
 		public CountessCard() 
-		{
-			Strength = 7;
-		}
+		{}
 
 		public void Effect()
 		{

@@ -2,13 +2,11 @@
 {
 	public class HandmaidCard : ICard<HandmaidCardData>
 	{
-		public int Strength { get; set; }
+		public int Strength { get; set; } = 4;
 		public HandmaidCardData Data { get; set; }
 
 		public HandmaidCard()
-		{
-			Strength = 4;
-		}
+		{}
 
 		public void Effect()
 		{

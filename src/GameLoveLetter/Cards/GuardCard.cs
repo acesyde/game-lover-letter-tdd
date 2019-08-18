@@ -4,13 +4,11 @@ namespace GameLoveLetter.Cards
 {
 	public class GuardCard : ICard<GuardCardData>
 	{
-		public int Strength { get; set; }
+		public int Strength { get; set; } = 1;
 		public GuardCardData Data { get; set; }
 
 		public GuardCard()
-		{
-			Strength = 1;
-		}
+		{}
 
 		public void Effect()
 		{

@@ -2,13 +2,11 @@
 {
 	public class PrinceCard : ICard<PrinceCardData>
 	{
-		public int Strength { get; set; }
+		public int Strength { get; set; } = 5;
 		public PrinceCardData Data { get; set; }
 
 		public PrinceCard()
-		{
-			Strength = 5;
-		}
+		{}
 
 		public void Effect()
 		{
