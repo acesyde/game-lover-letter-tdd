@@ -24,16 +24,18 @@ namespace GameLoveLetter
 			{
 				Players.Add(new Player());
 			}
+
+			Initialization();
 		}
 
-		public void Initialization()
+		private void Initialization()
 		{
 			CardDeck.DiscardCard();
 
 			foreach(var player in Players)
 			{
-				player.Initialization(Players);
-				player.DrawACard(CardDeck.DrawACard());
+				player.Initialization(Players, CardDeck.DrawACard);
+				player.DrawACard();
 			}
 		}
 	}

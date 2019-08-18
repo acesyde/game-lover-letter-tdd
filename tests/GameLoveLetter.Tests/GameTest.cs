@@ -52,7 +52,8 @@ namespace GameLoveLetter.Tests
 		}
 		#endregion // A game should contain between 2 and 4 players
 
-		#region Initialization of the game
+		#region Check number of card into the deck
+
 		[Theory]
 		[InlineData(typeof(GuardCard), 5)]
 		[InlineData(typeof(PriestCard), 2)]
@@ -62,32 +63,34 @@ namespace GameLoveLetter.Tests
 		[InlineData(typeof(KingCard), 1)]
 		[InlineData(typeof(CountessCard), 1)]
 		[InlineData(typeof(PrincessCard), 1)]
-		public void GameInitialization_NumberOfCards(Type cardType, int nbCardsExpected)
+		public void CardDeck_NumberOfEachCards_DependsOfCardType(Type cardType, int nbCardsExpected)
 		{
 			// A
-			var game = new Game(2);
+			var cardDeck = new CardDeck();
 
 			// A
-			var nbCards = game.CardDeck.Cards.Count(c => c.GetType() == cardType);
+			var nbCards = cardDeck.Cards.Count(c => c.GetType() == cardType);
 
 			// A
 			Assert.Equal(nbCardsExpected, nbCards);
 		}
 
 		[Fact]
-		public void GameInitialization_NumberOfCardsIntoTheDeck_SixteenCards()
+		public void CardDeck_TotalNumberOfCards_SixteenCards()
 		{
 			// A
-			var game = new Game(2);
+			var cardDeck = new CardDeck();
 			int nbCardsExpected = 16;
 
 			// A
-			int nbCards = game.CardDeck.Cards.Count;
+			int nbCards = cardDeck.Cards.Count;
 
 			// A
 			Assert.Equal(nbCardsExpected, nbCards);
 		}
+		#endregion // Check number of card into the deck
 
+		#region Initialization of the game
 		[Theory]
 		[InlineData(2, 13)]
 		[InlineData(3, 12)]
@@ -95,10 +98,9 @@ namespace GameLoveLetter.Tests
 		public void GameInitialization_NumberOfCardsAfterInitialization_OneCardIsDiscardedAndOneCardIsDealtToEachPlayer(int nbPlayer, int nbCardsRemainingExpected)
 		{
 			// A
-			var game = new Game(nbPlayer);
 			
 			// A
-			game.Initialization();
+			var game = new Game(nbPlayer);
 			int nbCards = game.CardDeck.Cards.Count;
 
 			// A
@@ -113,7 +115,6 @@ namespace GameLoveLetter.Tests
 			int nbCardExpected = 1;
 
 			// A
-			game.Initialization();
 
 			// A
 			Assert.Equal(nbCardExpected, game.Players[0].Cards.Count);
