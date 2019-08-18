@@ -12,7 +12,13 @@
 
 		public void Effect()
 		{
-			throw new System.NotImplementedException();
+			if (Data.DesignatedPlayer.Cards[0].GetType() == typeof(PrincessCard))
+			{
+				Data.DesignatedPlayer.IsEliminated = true;
+			}
+
+			Data.DesignatedPlayer.DiscardCard();
+			Data.DesignatedPlayer.DrawACard();
 		}
 	}
 }

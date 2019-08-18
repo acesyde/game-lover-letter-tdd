@@ -3,12 +3,12 @@
 	public class BaronCardData : CardData
 	{
 		/// <summary>
-		/// Current player who played the guard card
+		/// Current player who played the card
 		/// </summary>
 		public Player CurrentPlayer { get; set; }
 
 		/// <summary>
-		/// Player who has been designated by the current player
+		/// Player named by the current player
 		/// </summary>
 		public Player DesignatedPlayer { get; set; }
 

@@ -68,7 +68,7 @@ namespace GameLoveLetter.Tests
 			var game = new Game(2);
 
 			// A
-			var nbCards = game.CardDesk.Cards.Count(c => c.GetType() == cardType);
+			var nbCards = game.CardDeck.Cards.Count(c => c.GetType() == cardType);
 
 			// A
 			Assert.Equal(nbCardsExpected, nbCards);
@@ -82,7 +82,7 @@ namespace GameLoveLetter.Tests
 			int nbCardsExpected = 16;
 
 			// A
-			int nbCards = game.CardDesk.Cards.Count;
+			int nbCards = game.CardDeck.Cards.Count;
 
 			// A
 			Assert.Equal(nbCardsExpected, nbCards);
@@ -99,7 +99,7 @@ namespace GameLoveLetter.Tests
 			
 			// A
 			game.Initialization();
-			int nbCards = game.CardDesk.Cards.Count;
+			int nbCards = game.CardDeck.Cards.Count;
 
 			// A
 			Assert.Equal(nbCardsRemainingExpected, nbCards);
@@ -110,16 +110,14 @@ namespace GameLoveLetter.Tests
 		{
 			// A
 			var game = new Game(2);
-			Player playerOne = game.Players[0];
-			Player playerTwo = game.Players[1];
 			int nbCardExpected = 1;
 
 			// A
 			game.Initialization();
 
 			// A
-			Assert.Equal(nbCardExpected, playerOne.Cards.Count);
-			Assert.Equal(nbCardExpected, playerTwo.Cards.Count);
+			Assert.Equal(nbCardExpected, game.Players[0].Cards.Count);
+			Assert.Equal(nbCardExpected, game.Players[1].Cards.Count);
 		}
 		#endregion // Initialization of the game
 	}

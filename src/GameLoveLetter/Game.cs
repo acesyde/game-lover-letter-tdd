@@ -8,7 +8,7 @@ namespace GameLoveLetter
 	{
 		public List<Player> Players { get; private set; }
 
-		public CardDeck CardDesk { get; private set; }
+		public CardDeck CardDeck { get; private set; }
 
 		public Game(int nbPlayer)
 		{
@@ -17,7 +17,7 @@ namespace GameLoveLetter
 				throw new BadNumberOfPlayersException();
 			}
 
-			CardDesk = new CardDeck();
+			CardDeck = new CardDeck();
 
 			Players = new List<Player>();
 			for (int i = 0; i < nbPlayer; i++)
@@ -28,11 +28,12 @@ namespace GameLoveLetter
 
 		public void Initialization()
 		{
-			CardDesk.DiscardCard();
+			CardDeck.DiscardCard();
 
 			foreach(var player in Players)
 			{
-				player.DrawACard(CardDesk.DrawACard());
+				player.Initialization(Players);
+				player.DrawACard(CardDeck.DrawACard());
 			}
 		}
 	}

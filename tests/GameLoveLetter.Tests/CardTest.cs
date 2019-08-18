@@ -134,10 +134,11 @@ namespace GameLoveLetter.Tests
 			Player designatedPlayer = new Player();
 			GuardCard currentPlayerCard = new GuardCard();
 			GuardCard designatedPlayerCard = new GuardCard();
+
 			currentPlayer.DrawACard(currentPlayerCard);
+			designatedPlayer.DrawACard(designatedPlayerCard);
 
 			// A
-			designatedPlayer.DrawACard(designatedPlayerCard);
 			currentPlayerCard.Data = new GuardCardData(currentPlayer, designatedPlayer, designatedPlayerCard.GetType());
 			var exception = Assert.Throws<GuardCardCannotAcceptGuardCardException>(() => currentPlayerCard.Effect());
 
@@ -150,50 +151,40 @@ namespace GameLoveLetter.Tests
 		public void GuardCardEffect_NameRightCard_PlayerIsEliminated()
 		{
 			// A
-			bool isEliminated = true;
-
 			Player currentPlayer = new Player();
 			Player designatedPlayer = new Player();
 			GuardCard currentPlayerCard = new GuardCard();
 			PriestCard designatedPlayerCard = new PriestCard();
 
-			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
-			currentPlayer.Initialization(players);
-			designatedPlayer.Initialization(players);
-
-			// A
 			currentPlayer.DrawACard(currentPlayerCard);
 			designatedPlayer.DrawACard(designatedPlayerCard);
+
+			// A
 			currentPlayerCard.Data = new GuardCardData(currentPlayer, designatedPlayer, designatedPlayerCard.GetType());
 			currentPlayerCard.Effect();
 
 			// A
-			Assert.Equal(isEliminated, designatedPlayer.IsEliminated);
+			Assert.True(designatedPlayer.IsEliminated);
 		}
 
 		[Fact]
 		public void GuardCardEffect_NameWrongCard_PlayerIsNotEliminated()
 		{
 			// A
-			bool isEliminated = false;
-
 			Player currentPlayer = new Player();
 			Player designatedPlayer = new Player();
 			GuardCard currentPlayerCard = new GuardCard();
 			PriestCard designatedPlayerCard = new PriestCard();
 
-			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
-			currentPlayer.Initialization(players);
-			designatedPlayer.Initialization(players);
-
-			// A
 			currentPlayer.DrawACard(currentPlayerCard);
 			designatedPlayer.DrawACard(designatedPlayerCard);
+
+			// A
 			currentPlayerCard.Data = new GuardCardData(currentPlayer, designatedPlayer, designatedPlayerCard.GetType());
 			currentPlayerCard.Effect();
 
 			// A
-			Assert.Equal(isEliminated, currentPlayer.IsEliminated);
+			Assert.False(currentPlayer.IsEliminated);
 		}
 		#endregion // Guard card effect
 
@@ -204,16 +195,17 @@ namespace GameLoveLetter.Tests
 			// A
 			Player currentPlayer = new Player();
 			Player designatedPlayer = new Player();
-			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
 			PriestCard currentPlayerCard = new PriestCard();
 			GuardCard designatedPlayerCard = new GuardCard();
 
+			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
 			currentPlayer.Initialization(players);
 			designatedPlayer.Initialization(players);
 
-			// A
 			currentPlayer.DrawACard(currentPlayerCard);
 			designatedPlayer.DrawACard(designatedPlayerCard);
+
+			// A
 			currentPlayerCard.Data = new PriestCardData(currentPlayer, designatedPlayer);
 			currentPlayerCard.Effect();
 
@@ -229,16 +221,13 @@ namespace GameLoveLetter.Tests
 			// A
 			Player currentPlayer = new Player();
 			Player designatedPlayer = new Player();
-			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
 			BaronCard currentPlayerCard = new BaronCard();
 
-			currentPlayer.Initialization(players);
-			designatedPlayer.Initialization(players);
-
-			// A
 			currentPlayer.DrawACard(currentPlayerCard);
 			currentPlayer.DrawACard(new PrincessCard());
 			designatedPlayer.DrawACard(new GuardCard());
+
+			// A
 			currentPlayerCard.Data = new BaronCardData(currentPlayer, designatedPlayer);
 			currentPlayer.PlayCard(currentPlayerCard);
 
@@ -253,16 +242,13 @@ namespace GameLoveLetter.Tests
 			// A
 			Player currentPlayer = new Player();
 			Player designatedPlayer = new Player();
-			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
 			BaronCard currentPlayerCard = new BaronCard();
 
-			currentPlayer.Initialization(players);
-			designatedPlayer.Initialization(players);
-
-			// A
 			currentPlayer.DrawACard(currentPlayerCard);
 			currentPlayer.DrawACard(new GuardCard());
 			designatedPlayer.DrawACard(new PrincessCard());
+
+			// A
 			currentPlayerCard.Data = new BaronCardData(currentPlayer, designatedPlayer);
 			currentPlayer.PlayCard(currentPlayerCard);
 
@@ -277,16 +263,13 @@ namespace GameLoveLetter.Tests
 			// A
 			Player currentPlayer = new Player();
 			Player designatedPlayer = new Player();
-			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
 			BaronCard currentPlayerCard = new BaronCard();
 
-			currentPlayer.Initialization(players);
-			designatedPlayer.Initialization(players);
-
-			// A
 			currentPlayer.DrawACard(currentPlayerCard);
 			currentPlayer.DrawACard(new GuardCard());
 			designatedPlayer.DrawACard(new GuardCard());
+
+			// A
 			currentPlayerCard.Data = new BaronCardData(currentPlayer, designatedPlayer);
 			currentPlayer.PlayCard(currentPlayerCard);
 
@@ -295,6 +278,149 @@ namespace GameLoveLetter.Tests
 			Assert.False(designatedPlayer.IsEliminated);
 		}
 		#endregion // Baron card effect
+
+		#region Handmaid card Effect
+		[Fact]
+		public void HandmaidCardEffect_CurrentPlayerIsProtected()
+		{
+			// A
+			Player currentPlayer = new Player();
+			HandmaidCard currentPlayerCard = new HandmaidCard();
+
+			currentPlayer.DrawACard(currentPlayerCard);
+
+			// A
+			currentPlayerCard.Data = new HandmaidCardData(currentPlayer);
+			currentPlayer.PlayCard(currentPlayerCard);
+
+			// A
+			Assert.True(currentPlayer.IsProtected);
+		}
+		#endregion // Handmaid card Effect
+
+		#region Prince card Effect
+		[Fact]
+		public void PrinceCardEffect_UseCardOnCurrentPlayer_CurrentPlayerDiscardsHisCardAndDrawsAnother()
+		{
+			// A
+			Player currentPlayer = new Player();
+			CardDeck cardDeck = new CardDeck();
+			PrinceCard currentPlayerCard = (PrinceCard) cardDeck.DrawACard(typeof(PrinceCard));
+
+			currentPlayer.Initialization(cardDeck.DrawACard);
+
+			currentPlayer.DrawACard(currentPlayerCard);
+			currentPlayer.DrawACard();
+
+			// A
+			currentPlayerCard.Data = new PrinceCardData(currentPlayer);
+			currentPlayer.PlayCard(currentPlayerCard);
+
+			// A
+			Assert.Equal(13, cardDeck.Cards.Count);
+		}
+
+		[Fact]
+		public void PrinceCardEffect_CurrentPlayerHasPrincessCard_CurrentPlayerIsEliminated()
+		{
+			// A
+			Player currentPlayer = new Player();
+			CardDeck cardDeck = new CardDeck();
+			PrincessCard currentPlayerCard = (PrincessCard)cardDeck.DrawACard(typeof(PrincessCard));
+
+			currentPlayer.Initialization(cardDeck.DrawACard);
+
+			currentPlayer.DrawACard(currentPlayerCard);
+			currentPlayer.DrawACard();
+
+			// A
+			currentPlayerCard.Data = new PrincessCardData(currentPlayer);
+			currentPlayer.PlayCard(currentPlayerCard);
+
+			// A
+			Assert.True(currentPlayer.IsEliminated);
+		}
+		#endregion // Prince card Effect
+
+		#region King card Effect
+		[Fact]
+		public void KingCardEffect_CurrentPlayerTradesHandWithDesignatedPlayer()
+		{
+			// A
+			Player currentPlayer = new Player();
+			Player designatedPlayer = new Player();
+			KingCard currentPlayerCard = new KingCard();
+
+			currentPlayer.DrawACard(currentPlayerCard);
+			currentPlayer.DrawACard(new GuardCard());
+			designatedPlayer.DrawACard(new HandmaidCard());
+
+			// A
+			currentPlayerCard.Data = new KingCardData(currentPlayer, designatedPlayer);
+			currentPlayer.PlayCard(currentPlayerCard);
+
+			// A
+			Assert.Equal(typeof(HandmaidCard), currentPlayer.Cards[0].GetType());
+			Assert.Equal(typeof(GuardCard), designatedPlayer.Cards[0].GetType());
+		}
+		#endregion // King card Effect
+
+		#region Countess card Effect
+		[Fact]
+		public void CountessCardEffect_PlayerHasKingCard_CountessCardIsPlayedImmediately()
+		{
+			// A
+			Player currentPlayer = new Player();
+			CardDeck cardDeck = new CardDeck();
+			CountessCard currentPlayerCard = new CountessCard();
+
+			currentPlayer.DrawACard(currentPlayerCard);
+			currentPlayer.DrawACard(new KingCard());
+
+			// A
+			currentPlayer.PlayCard();
+
+			// A
+			Assert.Equal(typeof(KingCard), currentPlayer.Cards[0].GetType());
+		}
+
+		[Fact]
+		public void CountessCardEffect_PlayerHasPrinceCard_CountessCardIsPlayedImmediately()
+		{
+			// A
+			Player currentPlayer = new Player();
+			CardDeck cardDeck = new CardDeck();
+			CountessCard currentPlayerCard = new CountessCard();
+
+			currentPlayer.DrawACard(currentPlayerCard);
+			currentPlayer.DrawACard(new PrinceCard());
+
+			// A
+			currentPlayer.PlayCard();
+
+			// A
+			Assert.Equal(typeof(PrinceCard), currentPlayer.Cards[0].GetType());
+		}
+		#endregion // Countess card Effect
+
+		#region Princess card Effect
+		[Fact]
+		public void PrincessCardEffect_CurrentPlayerPlaysPrincessCard_CurrentPlayerIsEliminated()
+		{
+			// A
+			Player currentPlayer = new Player();
+			PrincessCard currentPlayerCard = new PrincessCard();
+
+			currentPlayer.DrawACard(currentPlayerCard);
+
+			// A
+			currentPlayerCard.Data = new PrincessCardData(currentPlayer);
+			currentPlayer.PlayCard(currentPlayerCard);
+
+			// A
+			Assert.True(currentPlayer.IsEliminated);
+		}
+		#endregion // Princess card Effect
 
 		#endregion // Cards effect
 	}

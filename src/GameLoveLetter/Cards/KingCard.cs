@@ -12,7 +12,9 @@
 
 		public void Effect()
 		{
-			throw new System.NotImplementedException();
+			ICard currentPlayerCard = Data.CurrentPlayer.Cards[0];
+			Data.CurrentPlayer.Cards[0] = Data.DesignatedPlayer.Cards[0];
+			Data.DesignatedPlayer.Cards[0] = currentPlayerCard;
 		}
 	}
 }

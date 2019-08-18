@@ -1,7 +1,15 @@
 ﻿namespace GameLoveLetter.Cards
 {
-	public class PrinceCardData
+	public class PrinceCardData : CardData
 	{
-		public Player Player { get; set; }
+		/// <summary>
+		/// Player named by the current player
+		/// </summary>
+		public Player DesignatedPlayer { get; set; }
+
+		public PrinceCardData(Player currentPlayer)
+		{
+			this.DesignatedPlayer = currentPlayer;
+		}
 	}
 }

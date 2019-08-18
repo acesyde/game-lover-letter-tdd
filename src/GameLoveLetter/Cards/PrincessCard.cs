@@ -12,7 +12,7 @@
 
 		public void Effect()
 		{
-			throw new System.NotImplementedException();
+			Data.CurrentPlayer.IsEliminated = true;
 		}
 	}
 }

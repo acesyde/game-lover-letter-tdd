@@ -12,7 +12,6 @@
 
 		public void Effect()
 		{
-			throw new System.NotImplementedException();
 		}
 	}
 }
