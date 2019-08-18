@@ -58,7 +58,10 @@ namespace GameLoveLetter
 
 		public void DiscardCard()
 		{
-			DiscardCard(this[0]);
+			if (this.Count <= 0)
+			{
+				DiscardCard(this[0]);
+			}
 		}
 
 		private void DiscardCard(ICard card)
