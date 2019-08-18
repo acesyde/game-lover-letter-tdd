@@ -51,7 +51,7 @@ namespace GameLoveLetter
 			return Cards[0].GetType() == cardType;
 		}
 
-		public ICard PlayCard()
+		public void PlayCard()
 		{
 			if (Cards.Count <= 0)
 			{
@@ -59,9 +59,13 @@ namespace GameLoveLetter
 			}
 
 			ICard chosenCard = ChooseCard();
-			Cards.Remove(chosenCard);
+			PlayCard(chosenCard);
+		}
 
-			return chosenCard;
+		public void PlayCard(ICard card)
+		{
+			Cards.Remove(card);
+			card.Effect();
 		}
 
 		private ICard ChooseCard()
@@ -73,7 +77,5 @@ namespace GameLoveLetter
 		{
 			return CardInformations[designatedPlayer];
 		}
-
-
 	}
 }

@@ -12,7 +12,14 @@
 
 		public void Effect()
 		{
-			throw new System.NotImplementedException();
+			if (Data.CurrentPlayer.Cards[0].Strength > Data.DesignatedPlayer.Cards[0].Strength)
+			{
+				Data.DesignatedPlayer.IsEliminated = true;
+			}
+			else if (Data.DesignatedPlayer.Cards[0].Strength > Data.CurrentPlayer.Cards[0].Strength)
+			{
+				Data.CurrentPlayer.IsEliminated = true;
+			}
 		}
 	}
 }

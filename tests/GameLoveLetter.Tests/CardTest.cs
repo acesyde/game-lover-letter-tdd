@@ -222,6 +222,80 @@ namespace GameLoveLetter.Tests
 		}
 		#endregion // Priest card effect
 
+		#region Baron card effect
+		[Fact]
+		public void BaronCardEffect_CurrentPlayerHasAStrongerCard_DesignatedPlayerIsEliminated()
+		{
+			// A
+			Player currentPlayer = new Player();
+			Player designatedPlayer = new Player();
+			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
+			BaronCard currentPlayerCard = new BaronCard();
+
+			currentPlayer.Initialization(players);
+			designatedPlayer.Initialization(players);
+
+			// A
+			currentPlayer.DrawACard(currentPlayerCard);
+			currentPlayer.DrawACard(new PrincessCard());
+			designatedPlayer.DrawACard(new GuardCard());
+			currentPlayerCard.Data = new BaronCardData(currentPlayer, designatedPlayer);
+			currentPlayer.PlayCard(currentPlayerCard);
+
+			// A
+			Assert.False(currentPlayer.IsEliminated);
+			Assert.True(designatedPlayer.IsEliminated);
+		}
+
+		[Fact]
+		public void BaronCardEffect_DesignatedPlayerHasAStrongerCard_CurrentPlayerIsEliminated()
+		{
+			// A
+			Player currentPlayer = new Player();
+			Player designatedPlayer = new Player();
+			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
+			BaronCard currentPlayerCard = new BaronCard();
+
+			currentPlayer.Initialization(players);
+			designatedPlayer.Initialization(players);
+
+			// A
+			currentPlayer.DrawACard(currentPlayerCard);
+			currentPlayer.DrawACard(new GuardCard());
+			designatedPlayer.DrawACard(new PrincessCard());
+			currentPlayerCard.Data = new BaronCardData(currentPlayer, designatedPlayer);
+			currentPlayer.PlayCard(currentPlayerCard);
+
+			// A
+			Assert.True(currentPlayer.IsEliminated);
+			Assert.False(designatedPlayer.IsEliminated);
+		}
+
+		[Fact]
+		public void BaronCardEffect_PlayersHasSameCARD_NoOneIsEliminated()
+		{
+			// A
+			Player currentPlayer = new Player();
+			Player designatedPlayer = new Player();
+			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
+			BaronCard currentPlayerCard = new BaronCard();
+
+			currentPlayer.Initialization(players);
+			designatedPlayer.Initialization(players);
+
+			// A
+			currentPlayer.DrawACard(currentPlayerCard);
+			currentPlayer.DrawACard(new GuardCard());
+			designatedPlayer.DrawACard(new GuardCard());
+			currentPlayerCard.Data = new BaronCardData(currentPlayer, designatedPlayer);
+			currentPlayer.PlayCard(currentPlayerCard);
+
+			// A
+			Assert.False(currentPlayer.IsEliminated);
+			Assert.False(designatedPlayer.IsEliminated);
+		}
+		#endregion // Baron card effect
+
 		#endregion // Cards effect
 	}
 }
