@@ -1,4 +1,6 @@
-﻿namespace GameLoveLetter.Cards
+﻿using System;
+
+namespace GameLoveLetter.Cards
 {
 	public class PriestCard : ICard<PriestCardData>
 	{
@@ -12,7 +14,7 @@
 
 		public void Effect()
 		{
-			throw new System.NotImplementedException();
+			Data.CurrentPlayer.UpdateCardInformation(Data.DesignatedPlayer, Data.DesignatedPlayer.Cards[0].GetType());
 		}
 	}
 }

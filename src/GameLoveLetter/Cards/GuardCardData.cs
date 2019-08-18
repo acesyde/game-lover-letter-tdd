@@ -21,9 +21,9 @@ namespace GameLoveLetter.Cards
 
 		public GuardCardData (Player currentPlayer, Player designatedPlayer, Type cardType)
 		{
-			CurrentPlayer = currentPlayer;
-			DesignatedPlayer = designatedPlayer;
-			CardType = cardType;
+			this.CurrentPlayer = currentPlayer;
+			this.DesignatedPlayer = designatedPlayer;
+			this.CardType = cardType;
 		}
 	}
 }

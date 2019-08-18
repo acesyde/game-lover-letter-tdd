@@ -8,10 +8,12 @@ namespace GameLoveLetter
 	{
 		public List<ICard> Cards { get; set; } 
 		public Dictionary<Player, Type> CardInformations { get; set; }
+		public bool IsEliminated { get; set; }
 
 		public Player()
 		{
 			Cards = new List<ICard>();
+			IsEliminated = false;
 		}
 
 		public void Initialization(List<Player> players)
@@ -29,14 +31,14 @@ namespace GameLoveLetter
 			Cards.Add(cardDrawn);
 		}
 
-		public void UpdateCardInformationAboutPlayer(Player designatedPlayer, Type cardType, bool playerHasDesignedCard)
+		public void UpdateCardInformation(Player designatedPlayer, Type cardType)
 		{
 			if (!CardInformations.ContainsKey(designatedPlayer))
 			{
 				throw new UnknownPlayerException();
 			}
 
-			CardInformations[designatedPlayer] = playerHasDesignedCard ? cardType : null;
+			CardInformations[designatedPlayer] = cardType;
 		}
 
 		public bool HasCard(Type cardType)
@@ -71,5 +73,7 @@ namespace GameLoveLetter
 		{
 			return CardInformations[designatedPlayer];
 		}
+
+
 	}
 }

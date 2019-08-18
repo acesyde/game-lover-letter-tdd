@@ -124,6 +124,8 @@ namespace GameLoveLetter.Tests
 		#endregion // Cards strength
 
 		#region Cards effect
+
+		#region Guard card effect
 		[Fact]
 		public void GuardCardEffect_NameGuardCard_ThrowException()
 		{
@@ -145,15 +147,17 @@ namespace GameLoveLetter.Tests
 		}
 
 		[Fact]
-		public void GuardCardEffect_NameRightCard_GetsCardPlayerInformation()
+		public void GuardCardEffect_NameRightCard_PlayerIsEliminated()
 		{
 			// A
+			bool isEliminated = true;
+
 			Player currentPlayer = new Player();
 			Player designatedPlayer = new Player();
-			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
 			GuardCard currentPlayerCard = new GuardCard();
 			PriestCard designatedPlayerCard = new PriestCard();
 
+			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
 			currentPlayer.Initialization(players);
 			designatedPlayer.Initialization(players);
 
@@ -161,34 +165,63 @@ namespace GameLoveLetter.Tests
 			currentPlayer.DrawACard(currentPlayerCard);
 			designatedPlayer.DrawACard(designatedPlayerCard);
 			currentPlayerCard.Data = new GuardCardData(currentPlayer, designatedPlayer, designatedPlayerCard.GetType());
+			currentPlayerCard.Effect();
+
+			// A
+			Assert.Equal(isEliminated, designatedPlayer.IsEliminated);
+		}
+
+		[Fact]
+		public void GuardCardEffect_NameWrongCard_PlayerIsNotEliminated()
+		{
+			// A
+			bool isEliminated = false;
+
+			Player currentPlayer = new Player();
+			Player designatedPlayer = new Player();
+			GuardCard currentPlayerCard = new GuardCard();
+			PriestCard designatedPlayerCard = new PriestCard();
+
+			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
+			currentPlayer.Initialization(players);
+			designatedPlayer.Initialization(players);
+
+			// A
+			currentPlayer.DrawACard(currentPlayerCard);
+			designatedPlayer.DrawACard(designatedPlayerCard);
+			currentPlayerCard.Data = new GuardCardData(currentPlayer, designatedPlayer, designatedPlayerCard.GetType());
+			currentPlayerCard.Effect();
+
+			// A
+			Assert.Equal(isEliminated, currentPlayer.IsEliminated);
+		}
+		#endregion // Guard card effect
+
+		#region Priest card effect
+		[Fact]
+		public void PriestCardEffect_GetsCardPlayerInformation()
+		{
+			// A
+			Player currentPlayer = new Player();
+			Player designatedPlayer = new Player();
+			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
+			PriestCard currentPlayerCard = new PriestCard();
+			GuardCard designatedPlayerCard = new GuardCard();
+
+			currentPlayer.Initialization(players);
+			designatedPlayer.Initialization(players);
+
+			// A
+			currentPlayer.DrawACard(currentPlayerCard);
+			designatedPlayer.DrawACard(designatedPlayerCard);
+			currentPlayerCard.Data = new PriestCardData(currentPlayer, designatedPlayer);
 			currentPlayerCard.Effect();
 
 			// A
 			Assert.Equal(designatedPlayerCard.GetType(), currentPlayer.GetCardInformation(designatedPlayer));
 		}
+		#endregion // Priest card effect
 
-		[Fact]
-		public void GuardCardEffect_NameWrongCard_GetsNoCardPlayerInformation()
-		{
-			// A
-			Player currentPlayer = new Player();
-			Player designatedPlayer = new Player();
-			List<Player> players = new List<Player>() { currentPlayer, designatedPlayer };
-			GuardCard currentPlayerCard = new GuardCard();
-			PriestCard designatedPlayerCard = new PriestCard();
-
-			currentPlayer.Initialization(players);
-			designatedPlayer.Initialization(players);
-
-			// A
-			currentPlayer.DrawACard(currentPlayerCard);
-			designatedPlayer.DrawACard(designatedPlayerCard);
-			currentPlayerCard.Data = new GuardCardData(currentPlayer, designatedPlayer, designatedPlayerCard.GetType());
-			currentPlayerCard.Effect();
-
-			// A
-			Assert.NotEqual(typeof(PrincessCard), currentPlayer.GetCardInformation(designatedPlayer));
-		}
 		#endregion // Cards effect
 	}
 }

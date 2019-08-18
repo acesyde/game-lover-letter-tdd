@@ -20,7 +20,10 @@ namespace GameLoveLetter.Cards
 			}
 
 			bool playerHasDesignedCard = Data.DesignatedPlayer.HasCard(Data.CardType);
-			Data.CurrentPlayer.UpdateCardInformationAboutPlayer(Data.DesignatedPlayer, Data.CardType, playerHasDesignedCard);
+			if (playerHasDesignedCard)
+			{
+				Data.DesignatedPlayer.IsEliminated = true;
+			}
 		}
 	}
 }
